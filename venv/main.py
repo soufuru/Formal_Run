@@ -39,8 +39,8 @@ norn_nature = mc.norn_nature()
 # 				json_A[x]["Class"] = json_B[x]["Class"]
 # 	json_file = json_A
 
-json_file = json.load(
-	open("corpus/Classification-2018-JA-FormalRun-Training-02-カジノを含む統合型リゾートを推進するべきである-1165-J.json", "r"))
+json_file = json.load(open("corpus/Classification-2018-JA-FormalRun-Training-02-カジノを含む統合型リゾートを推進するべきである-1165-J.json", "r"))
+# json_file = json.load(open("corpus/Classification-2018-JA-FormalRun-Training-04-集団的自衛を認めるべきである-1515-A.json", "r"))
 tmp_topic = json_file[0]["Topic"]
 
 # classの数
@@ -50,7 +50,7 @@ correct_sentence = {"Class 1": [], "Class 2": []}
 
 # 極性辞書が1,0,-1の3値のとき用
 negative_threshold = -1.7
-positive_threshold = 0
+positive_threshold = 1
 
 wrong_sentence = []
 m = MeCab.Tagger("-Ochasen")
@@ -148,9 +148,10 @@ for number in range(len(json_file)):
 		tmp_output["Class"] = 0
 	output.append(tmp_output)
 
-print(json.dumps(output))
-# ch.factcheckability_check(output, json_file)
+# print(json.dumps(output))
+ch.factcheckability_check(output, json_file)
 ch.relevance_check(output,json_file)
-# ch.class_check(output, json_file)
+ch.stance_check(output, json_file)
+ch.class_check(output, json_file)
 
 # file_output(json_file)

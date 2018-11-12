@@ -8,6 +8,7 @@ import statistics
 import math
 
 def make_corpus_from_enhanced_by_Word2Vec():
+	print("整数の辞書(word2vecで強化後)")
 	polarity = {}
 	file = open("corpus/corpus.txt", "r").readlines()
 	pattern = "\'(.*)\':(.*),"
@@ -30,8 +31,9 @@ def make_corpus_from_integer_corpus():
 	return polarity
 
 def make_corpus_from_float_corpus():
+	print("実数の辞書")
 	polarity = {}
-	file = open("corpus3.txt", "r").readlines()
+	file = open("corpus/corpus3.txt", "r").readlines()
 	pattern = "\"(.*)\":(.*)"
 	repatter = re.compile(pattern)
 	for i in file:
@@ -119,7 +121,7 @@ def make_corpus_pn_ja():
 
 	for key in polarity.keys():
 		polarity[key] += math.fabs(mean)
-		print("\""+key+"\""+":"+str(polarity[key]))
+		# print("\""+key+"\""+":"+str(polarity[key]))
 	return polarity
 
 

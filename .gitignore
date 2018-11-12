@@ -1,1 +1,5 @@
 # Created by .ignore support plugin (hsz.mobi)
+.idea/inspectionProfiles/
+venv/corpus/
+venv/include
+venv/result*
